@@ -1,0 +1,158 @@
+<div class="bar education">
+    <a class="button button-clear button-dark" href="">education</a>
+    <h1 class="title">&nbsp;</h1>
+    <a class="button button-clear fa fa-angle-double-left button-dark" ng-click="closeMenu();"></a>
+</div>
+
+<ion-pane class="education nobg border-2px">
+    <ion-tabs class="tabs-striped tabs-top tabs-background-clear tabs-dark tabs-stable tabs-top tabs-icon-top slide-left-right-ios7" animation="slide-left-right">
+
+
+        <ion-tab title="Edit Existing" icon-on="fa fa-pencil" icon-off="fa fa-pencil">
+            <ion-content class="has-header panel nobg" style="background-color: #F9F9F9 !important;">
+
+                    <div ng-repeat="ed in alEducation" class="card">
+
+
+
+
+
+                            <div class="item">
+
+
+                                <table width="100%">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 90%">
+                                            <h2 class="title">
+                                                {{ed.degree}}
+                                            </h2>
+                                            <p>
+                                                {{ed.school}}
+                                            </p>
+                                        </td>
+                                        <td>
+
+                                            <a class="button button-clear">
+                                                <!--<i class="icon ion-arrow-up-a"></i>-->
+                                            </a>
+
+                                            <a class="button button-clear">
+                                                <!--<i class="icon ion-arrow-down-a"></i>-->
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="item item-divider">
+                            <!--I'm a-->
+                            <!--<div class="item">-->
+                            <p class="user-action">
+                                <a class="cursor fa fa-pencil" ng-click="doEdit(ed)"> edit</a>
+                                <a class="cursor assertive fa fa-trash col-offset-80" ng-click="doDelete(ed)"> delete</a>
+                            </p>
+                        </div>
+
+                    </div>
+
+            </ion-content>
+        </ion-tab>
+
+
+
+
+
+
+
+
+        <ion-tab title="Add New" icon-on="fa fa-plus-circle" icon-off="fa fa-plus-circle">
+            <ion-content class="has-header panel"  style="background-color: #F9F9F9">
+
+                <form class="pure-form" name="formResume" ng-submit="doSave()">
+
+                    <input type="hidden" name="id" ng-model="education._id"/>
+                    <input type="hidden" name="order" ng-model="education.order"/>
+
+                    <p>
+                        <label for="degree">Degree</label>
+                        <input type="text" id="degree" name="degree" placeholder="Bachelor of Science in Criminal Justice" ng-model="education.degree"/>
+                    </p>
+
+                    <p>
+                        <label for="institute">Institute / School</label>
+                        <input type="text" id="institute" name="institute" placeholder="Oxford University" ng-model="education.school"/>
+                    </p>
+                    <p>
+                        <label for="instituteAddress">Institute Address</label>
+                        <textarea name="instituteAddress" id="instituteAddress" cols="30" rows="4" placeholder="Area, City, State, Country" ng-model="education.address"></textarea>
+                    </p>
+                    <p>
+                    <div class="row no-pad">
+                        <div class="col">
+                            <label> Start Date</label>
+                            <div class="row">
+                                <select name="startMonth" id="startMonth" placeholder="Month" ng-model="education.startMonth" ng-options="opt.index as opt.display for opt in data.months">
+                                    <!--<option ng-repeat="m in data.months" value="{{m.index}}">{{m.display}}</option>-->
+                                </select>
+                                <select name="startYear" id="startYear" placeholder="Year" ng-model="education.startYear"  ng-options="opt as opt for opt in data.year">
+                                    <!--<option ng-repeat="y in data.year" value="{{y}}">{{y}}</option>-->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="">End Date</label>
+                            <div class="row">
+                                <select name="endMonth" id="endMonth" ng-model="education.endMonth" ng-options="opt.index as opt.display for opt in data.months">
+                                    <!--<option ng-repeat="m in data.months" value="{{m.index}}">{{m.display}}</option>-->
+                                </select>
+                                <select name="endYear" id="endYear" ng-model="education.endYear"  ng-options="opt as opt for opt in data.year">
+                                    <!--<option ng-repeat="y in data.year" value="{{y}}">{{y}}</option>-->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    </p>
+
+                    <p>
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" cols="30" rows="4" placeholder="Details of the study" ng-model="education.description"></textarea>
+                    </p>
+
+                    <p>
+                    <!--<div class="row">-->
+                        <!--<div class="col col-70">-->
+                            <!--<label for="grade">Grade</label>-->
+                            <!--<input id="grade" type="text"/>-->
+                        <!--</div>-->
+                        <!--<div class="col col-offset-10">-->
+                            <!--<div class="label">Display on paper</div>-->
+                            <!--<label class="toggle toggle-balanced" style="margin-top:-2px;">-->
+<!---->
+                                <!--<input type="checkbox" name="enableGrade">-->
+                                <!--<div class="track">-->
+                                    <!--<div class="handle"></div>-->
+                                <!--</div>-->
+                            <!--</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    </p>
+
+
+                    <div class="row">
+                        <button class="button button-stable">Reset</button>
+                        <div class="col"></div>
+                        <button type="submit" class="button button-positive">Save</button>
+                    </div>
+                    </p>
+
+
+                </form>
+
+            </ion-content>
+        </ion-tab>
+
+
+    </ion-tabs>
+</ion-pane>

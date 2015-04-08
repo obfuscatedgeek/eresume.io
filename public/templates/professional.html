@@ -1,0 +1,153 @@
+<style type="text/css">
+    .resume-container * {
+        font-family: Verdana;
+    }
+
+    .name {
+        font-size: 5em !important;
+        padding: 20px 0 15px 15px;;
+    }
+
+    .resume-blocks {
+        margin-bottom: 20px;
+        padding: 15px;;
+    }
+
+    .block-title {
+        font-size: 30px;
+        margin-left: 10px;;
+        border-bottom: 1px solid #333;
+        padding-bottom: 5px;;
+    }
+
+    .block {
+        border-bottom: 1px solid #EEE;;
+        padding: 20px;
+    }
+
+    .block .main-title {
+        font-size: 20px;
+        margin: 3px 0;
+        color: #333;
+    }
+
+    .block .sub-title {
+        font-size: 18px;
+        margin: 3px 0;
+        color:#3c3c3c;
+    }
+
+    .block .duration-title {
+        color: #AAA;
+    }
+</style>
+
+<div class="resume-container">
+    <div class="row">
+        <div class="col">
+            <div class="name">
+                {{resume.personal.firstName | uppercase}}<b>{{resume.personal.lastName | uppercase}}</b>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="resume-blocks">
+        <div class="col">
+            <p class="objective">
+                {{resume.resume.objective}}
+            </p>
+        </div>
+    </div>
+
+
+    <div class="resume-blocks">
+        <div class="block-title">
+            PERSONAL INFORMATION
+        </div>
+
+        <div class="block">
+
+            <div class="row">
+                <div class="col col-10 form-lable">Name:</div>
+                <div class="col">{{fc.resume.personal.firstName}} {{resume.personal.lastName}}</div>
+            </div>
+
+
+            <div class="row">
+                <div class="col col-10 form-lable">Email:</div>
+                <div class="col">{{resume.personal.email}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col col-10 form-lable">Phone:</div>
+                <div class="col">{{resume.personal.phone}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col col-10 form-lable">Website:</div>
+                <div class="col">{{resume.personal.website}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col col-10 form-lable">Address:</div>
+                <div class="col">{{resume.personal.address}}</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="resume-blocks">
+        <div class="block-title">
+            EXPERIENCE
+        </div>
+
+
+        <div ng-repeat="e in resume.experiences"}} class="block">
+            <div class="row main-title">
+                {{e.designation}}
+            </div>
+
+            <div class="row">
+                <div class="col col-50 sub-title no-pad">
+                    {{e.company}}
+                </div>
+                <div class="col duration-title">
+                    <i>{{e.startMonth}} / {{e.startYear}} to {{e.endMonth}} / {{e.endYear}}</i>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    {{e.description}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="resume-blocks">
+        <div class="block-title">
+            EDUCATION
+        </div>
+        <div ng-repeat="d in resume.education" class="block">
+
+
+            <div class="row main-title">
+                    {{d.degree}}
+            </div>
+
+            <div class="row">
+                <div class="col col-50 sub-title no-pad">
+                    {{d.school}}
+                </div>
+                <div class="col duration-title">
+                    {{d.startYear}} to {{d.endYear}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

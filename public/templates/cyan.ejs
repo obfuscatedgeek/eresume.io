@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> | eresume.io</title>
+
+
+    <link rel="stylesheet" href="../vendor/foundation/css/normalize.css" media="all"/>
+    <!--<link rel="stylesheet" href="/home/ejaz/development/site/public/vendor/foundation/css/normalize.css" media="all"/>-->
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css" media="all"/>
+    <link rel="stylesheet" href="../vendor/foundation/css/foundation.css" media="all"/>
+    <!--<link rel="stylesheet" href="/home/ejaz/development/site/public/vendor/foundation/css/foundation.css" media="all"/>-->
+
+    <!--<link rel="stylesheet" href="foundation.css"/>-->
+    <style type="text/css">
+
+
+
+        #heading {
+            border-bottom: 2px solid #000;;
+            margin-bottom: 20px;;
+        }
+
+        .underline {
+            border-bottom: 1px solid #000;
+            /*text-decoration: underline;*/
+        }
+
+        table {
+            border: 0;
+        }
+
+        table tr:nth-of-type(even) {
+            background-color: transparent !important;
+
+        }
+
+        .disabledfield {
+            color: #EEE !important;
+        }
+
+        .disabledfield * {
+            color: #EEE;
+        }
+
+        #names {
+            text-transform: uppercase;
+        }
+
+        #headline {
+            text-transform: capitalize;
+            text-align: left;
+            color: #666;
+            margin-top: -20px;
+        }
+
+        .showoff {
+            display: none !important;
+        }
+
+
+        .subheading {
+            text-transform: uppercase;
+            font-size: 20px;;
+        }
+
+        .fieldLabel {
+            font-weight: bold;
+            color: #000 !important;
+        }
+
+        .valignup td{
+            vertical-align: top;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .biggestfont {
+            font-size: 16px;;
+            text-transform: uppercase;
+        }
+
+        .biggerfont {
+            padding: 5px 0;
+            font-size: 15px;
+            color: #A0a0a0;
+        }
+
+        i.fa {
+            color: #000 !important;
+        }
+
+        .black {
+            color: #000;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<% var hideClass = 'showon';
+
+if(isPreview == "f") {
+    hideClass = 'showoff';
+}
+
+var alMonths = [];
+
+alMonths.push('January');
+alMonths.push('February');
+alMonths.push('March');
+alMonths.push('April');
+alMonths.push('May');
+alMonths.push('June');
+alMonths.push('July');
+alMonths.push('August');
+alMonths.push('September');
+alMonths.push('October');
+alMonths.push('November');
+alMonths.push('December');
+%>
+
+
+<div class="row" id="heading">
+
+    <div class="columns large-8 small-8">
+
+
+        <h1 id="names">
+            <%
+            var clsFirstName = [];
+            if(isPreview === "f") {
+
+                if(!resume.personal || !resume.personal.firstName) {
+                    clsFirstName.push('showoff');
+                }
+            }
+            if(!resume.personal || !resume.personal.firstName) {
+                clsFirstName.push('disabledfield');
+            }
+            %>
+
+            <%
+            var clsLastName = [];
+            if(isPreview === "f") {
+                if(!resume.personal || !resume.personal.lastName) {
+                    clsLastName.push('showoff');
+                }
+            }
+            if(!resume.personal || !resume.personal.lastName) {
+                clsLastName.push('disabledfield');
+            }
+            %>
+
+            <span class="<%=clsFirstName.join(' ')%>"><%=resume.personal.firstName || 'FIRSTNAME' %></span><span id="lastName" class="<%=clsLastName.join(' ')%>"><b><%=resume.personal.lastName || 'LAST' %></b></span>
+
+
+        </h1>
+
+        <%
+        var clsHeadline = [];
+        if(isPreview === "f") {
+            if(!resume.resume || !resume.resume.headline || resume.resume.headline.trim().length === 0) {
+                clsHeadline.push('showoff');
+            }
+        }
+        if(!resume.resume || !resume.resume.headline || resume.resume.headline.trim().length === 0) {
+            clsHeadline.push('disabledfield');
+        }
+        %>
+        <p id="headline" class="<%=clsHeadline.join(' ')%>"><%=resume.resume.headline || 'creator of all things awesome / my awesome job title' %></p>
+
+    </div>
+
+    <div class="columns large-4 small-4">
+
+        <table width="100%" style="margin-bottom: 3px;border: 0;background-color: #FFF;">
+            <tbody>
+            <%
+            var clsWebsite = [];
+            if(isPreview === "f") {
+                if(!resume.personal || !resume.personal.website) {
+                    clsWebsite.push('showoff');
+                }
+            }
+            if(!resume.personal || !resume.personal.website) {
+                clsWebsite.push('disabledfield');
+            }
+            %>
+            <tr class="<%=clsWebsite.join(' ')%>">
+                <td>
+                    <i class="fa fa-link"></i>
+                </td>
+                <td>
+                    <span><%=resume.personal.website || 'http://www.my-url.com'%></span>
+                </td>
+            </tr>
+
+            <%
+            var clsEmail = [];
+            if(isPreview === "f") {
+                if(!resume.personal || !resume.personal.email || resume.personal.email.trim().length === '0') {
+                    clsEmail.push('showoff');
+                }
+            }
+            if(!resume.personal || !resume.personal.email) {
+                clsEmail.push('disabledfield');
+            }
+            %>
+            <tr class="<%=clsEmail.join(' ')%>">
+                <td>
+                    <i class="fa fa-envelope"></i>
+                </td>
+                <td>
+
+                        <span>
+                            <%=resume.personal.email|| 'mail@here.com'%>
+                        </span>
+                </td>
+            </tr>
+            <%
+            var clsPhone = [];
+
+            if(isPreview === "f") {
+                if(!resume.personal || !resume.personal.phone || resume.personal.phone.trim().length === 0) {
+                    clsPhone.push('showoff');
+                }
+            }
+            if(!resume.personal || !resume.personal.phone) {
+                clsPhone.push('disabledfield');
+            }
+            %>
+            <tr class="<%=clsPhone.join(' ')%>">
+                <td>
+                    <i class="fa fa-phone"></i>
+                </td>
+                <td>
+                        <span>
+                            <%=resume.personal.phone|| '+14 7377 505'%>
+                        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="columns large-8 small-8">
+
+        <div>
+            <h2 class="underline subheading">
+                <%=resume.label.glEducation || 'Qualification'%>
+            </h2>
+
+
+            <% for (var ed = 0; ed < resume.education.length; ed++) {
+
+                var ca = resume.education[ed];
+            %>
+
+
+            <table width="100%" style="margin-bottom: 3px;border: 0">
+                <tbody>
+                <tr>
+                    <td width="25%" style="vertical-align: top;text-align: right;">
+                        <div>
+                            <span class="<%=ca.startYear ? '' : 'disabledfield'%>">
+                                <%=ca.startYear|| 'Start'%> -
+                            </span>
+                            <span class="<%=ca.endYear ? '' : 'disabledfield'%>">
+                                <%=ca.endYear || 'End'%>
+                            </span>
+                        </div>
+                    </td>
+                    <td width="60" style="border-left: 1px solid #000;">
+                        <span class="fa fa-plus" style="display: inline;float: left; margin-left: -16px; background-color: #FFF; boder-top: 2px solid #FFF;"></span>
+                        <div class="bold biggestfont">
+                            <span class="<%=ca.degree ? '' : 'disabledfield'%>">
+                                <%=ca.degree|| 'Random MBA'%>
+                            </span>
+                        </div>
+                        <div class="biggerfont">
+                            <span class="<%=ca.school ? '' : 'disabledfield'%>">
+                                <%=ca.school|| 'Coolest school'%>
+                            </span>
+                        </div>
+                    </td>
+                    <td width="15%"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <% } %>
+
+
+        </div>
+
+
+
+        <div>
+            <h2 class="underline subheading">
+                <%=resume.label.glExperience|| 'Work Experience'%>
+            </h2>
+
+
+            <% for (var ex = 0; ex < resume.experiences.length; ex++) {
+
+                var pe = resume.experiences[ex];
+            %>
+
+            <table width="100%" style="margin-bottom: 3px;border: 0">
+                <tbody>
+                <tr>
+                    <td width="25%" style="vertical-align: top;text-align: right;">
+                        <div>
+
+
+                                <span class="<%=pe.startMonth ? '' : 'disabledfield'%>">
+                                    <%=alMonths[pe.startMonth]|| 'Month'%>
+                                </span>
+
+                                <span class="<%=pe.startYear ? '' : 'disabledfield'%>">
+                                    <%=pe.startYear|| 'Start'%> -
+                                </span>
+
+                            <% if(pe.isPresent) { %>
+                            <span>Present</span>
+
+                            <% } else { %>
+                            <span class="<%=pe.endMonth ? '' : 'disabledfield'%>">
+                                    <%=alMonths[pe.endMonth ]|| 'Month'%>
+                                </span>
+                                <span class="<%=pe.endYear ? '' : 'disabledfield'%>">
+                                    <%=pe.endYear || 'End'%>
+                                </span>
+                            <% }%>
+
+
+                        </div>
+                    </td>
+                    <td width="75" style="border-left: 1px solid #000;">
+                        <span class="fa fa-plus" style="display: inline;float: left; margin-left: -16px; background-color: #FFF; boder-top: 2px solid #FFF;"></span>
+                        <div>
+                                <span class="<%=pe.designation ? 'bold' : 'disabledfield'%> bold biggestfont">
+                                    <%=pe.designation|| 'Designation'%>
+                                </span>
+                        </div>
+                        <div class="biggerfont">
+                                <span class="<%=pe.company ? '' : 'disabledfield'%>">
+                                    <%=pe.company|| 'Company Pvt. Ltd.'%>
+                                </span>
+
+                        </div>
+                        <div>
+                                <span class="<%=pe.description ? '' : 'disabledfield'%>">
+                                    <%=pe.description|| 'At this job you will be doing Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius massa sed ex euismod hendrerit. Vivamus vehicula turpis vitae ornare dignissim. Etiam at magna turpis. Sed vitae placerat risus. In hac habitasse platea dictumst. Pellentesque condimentum dolor augue, sit amet facilisis urna vehicula vitae. Sed vel leo in magna maximus fringilla. Etiam congue massa sed eros eleifend, et tristique elit dictum'%>
+                                </span>
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <% } %>
+
+        </div>
+
+        <div>
+            <h2 class="underline subheading">
+                <%=resume.label.glProjects || 'Projects'%>
+            </h2>
+
+
+
+            <%
+
+                if(resume && resume.projects) {
+
+
+                for (var pr = 0; pr < resume.projects.length; pr++) {
+
+                    var oj= resume.projects[pr];
+            %>
+
+
+            <table width="100%" style="margin-bottom: 3px;border: 0">
+                <tbody>
+                <tr>
+                    <td width="25%" style="vertical-align: top;text-align: right;">
+                        <div>
+
+                        </div>
+                    </td>
+                    <td width="60" style="border-left: 1px solid #000;">
+                        <span class="fa fa-plus" style="display: inline;float: left; margin-left: -16px; background-color: #FFF; boder-top: 2px solid #FFF;"></span>
+                        <div class="bold biggestfont">
+                            <span class="<%=oj.name ? '' : 'disabledfield'%>">
+                                <%=oj.name|| 'Random MBA'%>
+                            </span>
+                        </div>
+                        <div class="biggerfont">
+                            <span class="<%=oj.url? '' : 'disabledfield'%>">
+                                <%=oj.url|| 'Coolest school'%>
+                            </span>
+                        </div>
+                        <div>
+                            <i><span class="<%=oj.keywords ? '' : 'disabledfield'%>">
+                                <%=oj.keywords || 'Coolest school'%>
+                            </span>
+                            </i>
+                        </div>
+                        <div>
+                            <span class="<%=oj.description ? '' : 'disabledfield'%>">
+                                <%=oj.description|| 'Coolest school'%>
+                            </span>
+                        </div>
+                    </td>
+                    <td width="15%"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <%
+            }
+            }
+            %>
+
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="columns large-4 small-4">
+
+
+        <div>
+            <h2 class="underline subheading">
+                <%=resume.label.glAboutMe|| 'About Me'%>
+            </h2>
+
+            <table width="100%" class="valignup">
+                <tbody>
+                <tr>
+                    <td width="36%">
+                        <span class="fieldLabel"><%=resume.label.piName || 'Name'%> :</span>
+                    </td>
+                    <td>
+                            <span class="<%=resume.personal.firstName ? '' : 'disabledfield'%>">
+                                <%=resume.personal.firstName|| 'First'%>
+                            </span>
+                            <span class="<%=resume.personal.lastName ? '' : 'disabledfield'%>">
+                                <%=resume.personal.lastName|| 'Last'%>
+                            </span>
+
+                    </td>
+                </tr>
+
+                <%
+                var clsDob = [];
+                if(isPreview === "f") {
+                    if(!resume.personal || !resume.personal.dob) {
+                        clsDob.push('showoff');
+                    }
+                }
+                if(!resume.personal || !resume.personal.dob) {
+                    clsDob.push('disabledfield');
+                }
+                %>
+                <tr class="<%=clsDob.join(' ')%>">
+                    <td>
+                        <span class="fieldLabel"><%=resume.label.piDob || 'D.O.B.'%> :</span>
+                    </td>
+                    <td>
+                            <span class="<%=resume.personal.dob? '' : 'disabledfield'%>">
+                                <%=resume.personal.dob|| '15-June-1987'%>
+                            </span>
+                    </td>
+                </tr>
+
+
+
+                <%
+                var clsAddress = [];
+                if(isPreview === "f") {
+                    if(!resume.personal || !resume.personal.address) {
+                        clsAddress.push('showoff');
+                    }
+                }
+                if(!resume.personal || !resume.personal.address) {
+                    clsAddress.push('disabledfield');
+                }
+                %>
+                <tr class="<%=clsAddress.join(' ')%>">
+                    <td>
+                        <span class="fieldLabel"><%=resume.label.piAddress || 'Address'%> :</span>
+                    </td>
+                    <td>
+
+                            <span class="<%=resume.personal.address? '' : 'disabledfield'%>">
+                                <%=resume.personal.address|| '5 Morton St. Apt. 14, New York, NY 10014'%>
+                            </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+        <%
+        var clsObjective = [];
+
+        if(isPreview === "f") {
+            if(!resume.resume || !resume.resume.objective || resume.resume.objective.trim().length === 0) {
+                clsObjective.push('showoff');
+            }
+        }
+
+        if(!resume.resume || !resume.resume.objective || resume.resume.objective.trim().length === 0) {
+            clsObjective.push('disabledfield');
+        }
+        %>
+        <div class="<%=clsObjective.join(' ')%>">
+            <h2 class="underline subheading black">
+                <%=resume.label.glObjective || 'Objective'%>
+            </h2>
+            <div>
+                <h4 class="subheader">
+                    <span>
+                        <%=resume.resume.objective|| 'An eye catching object that would attract the potential headhunters. '%>
+                    </span>
+
+                </h4>
+            </div>
+        </div>
+
+
+
+
+
+        <%
+        var clsSkills = [];
+
+        if(isPreview === "f") {
+            if(!resume || !resume.skills || resume.skills.length === 0) {
+                clsSkills.push('showoff');
+            }
+        }
+
+        if(!resume || !resume.skills || resume.skills.length === 0) {
+            clsSkills.push('disabledfield');
+        }
+        %>
+        <div class="<%=clsSkills.join(' ')%>">
+            <h2 class="underline subheading">
+                <%=resume.label.skTechnical || 'Skills'%>
+            </h2>
+
+
+            <table width="100%">
+                <tbody>
+                <%
+                if(resume && resume.skills) {
+
+                for (var ski = 0; ski < resume.skills.length; ski++) {
+
+                    var ls = resume.skills[ski];
+
+                    var perc = ls.rating*10;
+                %>
+                <tr>
+                    <td width="20%">
+                        <%=ls.name%>
+                    </td>
+                    <td>
+                        <div class="progress success" style="height: 8px;">
+                            <span class="meter" style="width:<%=perc%>%;height: 3px;"></span>
+                        </div>
+                    </td>
+                </tr>
+                <% } } %>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+        <%
+        var clsLanguages = [];
+
+        if(isPreview === "f") {
+            if(!resume || !resume.languages || resume.languages.length === 0) {
+                clsLanguages.push('showoff');
+            }
+        }
+
+        if(!resume || !resume.skills || resume.skills.length === 0) {
+            clsLanguages.push('disabledfield');
+        }
+        %>
+        <div class="<%=clsLanguages.join(' ')%>">
+            <h2 class="underline subheading">
+                <%=resume.label.glLanguages || 'Languages'%>
+            </h2>
+
+
+            <table width="100%">
+                <tbody>
+                <%
+                if(resume && resume.languages) {
+
+                for (var lang = 0; lang < resume.languages.length; lang++) {
+
+                    var language = resume.languages[lang];
+
+//                    var perc = ls.rating*10;
+                %>
+                <tr>
+                    <td width="20%">
+                        <span style="font-size: 18px"><%=language.name%> </span><br/>
+                        <span style="color: #9a9a9a !important; text-transform: lowercase;"><i><%=language.rating%></i></span>
+                    </td>
+                </tr>
+                <% } } %>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

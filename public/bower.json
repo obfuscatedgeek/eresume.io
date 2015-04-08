@@ -1,0 +1,38 @@
+{
+  "name": "cvComposr",
+  "version": "0.0.0",
+  "authors": [
+    "Ejaz Bawasa <bawasa.ejaz@gmail.com>"
+  ],
+  "description": "cvComposr",
+  "main": "app.js",
+  "keywords": [
+    "resume"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./scripts/library",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic": "1.0.0-beta.13",
+    "fontawesome": "4.2.0",
+    "angular-strap": "~2.1.1",
+    "lodash": "~2.4.1",
+    "foundation": "~5.4.7",
+    "satellizer": "~0.8.4",
+    "angular-resource": "~1.3.2",
+    "angular": "~1.3.8",
+    "angular-animate": "~1.3.8"
+  },
+  "resolutions": {
+    "angular": "~1.3.8",
+    "angular-animate": "~1.3.8"
+  }
+}

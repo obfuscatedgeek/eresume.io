@@ -1,0 +1,24 @@
+<ion-header-bar class="bar bar-energized" align-title="left" id="app-header">
+    <div class="buttons">
+        <a class="button icon button-stable fa fa-home" ui-sref="dashboard.blank"></a> &nbsp;
+        <a class="button button-stable icon fa fa-gear" ng-click="showPopover($event)"></a>
+    </div>
+    <h1 class="title">
+        <span id="logo-colored">eresume</span>.io
+    </h1>
+
+    <div class="buttons">
+        <a class="button button-clear" ng-click="doLogout()">logout</a>
+    </div>
+
+</ion-header-bar>
+<ion-pane style="overflow-y: hidden;">
+    <ion-nav-view name="dashMenu" class="col col-10 whitebg has-header has-footer" id="dashmenu"></ion-nav-view>
+    <ion-nav-view name="dashContent" class="col col-offset-10 whitebg has-header" id="dash-content"></ion-nav-view>
+</ion-pane>
+
+<ion-footer-bar align-title="right" class="bar-dark" id="app-footer">
+    <h1 class="title">
+        <a class="button button-clear button-small">made by Ejaz.</a>
+    </h1>
+</ion-footer-bar>

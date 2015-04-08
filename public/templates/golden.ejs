@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sapphire</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../vendor/foundation/css/normalize.css" media="all"/>
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css" media="all"/>
+    <link rel="stylesheet" href="../vendor/foundation/css/foundation.css" media="all"/>
+
+
+    <style type="text/css">
+        * {
+            font-family: Roboto, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            /*font-family: "Trebuchet MS";*/
+            font-size: 12px;
+            color: #333;
+        }
+
+        .blue {
+            color: #0088C6;
+        }
+
+        i.fa {
+            color: #F8BC38;
+            font-size: 13px;
+        }
+
+        .showoff {
+            display: none !important;
+        }
+
+        div.blocks {
+            /*margin-bottom: 15px !important;*/
+        }
+
+        table tr:nth-of-type(even) {
+            background-color: transparent !important;
+
+        }
+
+        div.blocks div.block-title {
+            /*border-top: 1px solid #DDD;*/
+            /*border-bottom: 1px solid #DDD;*/
+            padding: 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        div.blocks div.block-body {
+            padding: 5px;
+        }
+
+
+        .bold {
+            font-weight: bold;
+        }
+
+        #heading {
+            margin-bottom: 30px;
+        }
+
+        #heading .headline-labels {
+            font-size: 12px;
+            padding: 0 5px 0 0;
+            text-align: right;
+            color: #ABABAB;
+        }
+
+        #heading .heading-blocks {
+            margin: 10px 0 0;
+        }
+
+        #heading .headline-blocks {
+            border-left: 1px solid #DDD;
+            padding: 0 0 0 8px;
+        }
+
+        #heading .heading-blocks .headline-item {
+            margin: 0 0 5px 0;
+            padding: 0;
+        }
+
+        .nopad {
+            padding: 0;
+        }
+
+        #name-block span {
+            font-size: 1em;
+        }
+
+        #headline {
+            padding: 0 0 0 10px;
+            font-size: 11px;
+            margin: -15px 0 0;
+        }
+
+
+        .font12 {
+            font-size: 12px;
+        }
+
+        .noborder {
+            border: 0;
+        }
+
+
+        #objective-block {
+            font-size: 14px;
+        }
+
+
+
+
+
+        .detail-period {
+            padding:  15px 10px 10px !important;
+            height: 100%;
+            text-align: right;
+
+        }
+
+
+
+        .detail-description {
+            /*padding: 10px 0 0;*/
+            padding-bottom: 20px;;
+            /*padding-top: 10px;;*/
+            border-left: 1px solid #F8BC38;
+            /*height: 100%;*/
+        }
+
+        .detail-description span.fa {
+            display: inline;
+            float: left;
+            margin-left: -21px;
+            color: #F8BC38;
+            margin-top: 5px;
+            /*margin-top: 5px;*/
+        }
+
+
+        .detail-table {
+            border: 0;
+            border-collapse: collapse;
+
+        }
+
+        .detail-table td {
+            padding: 10px 0 0 15px;
+            vertical-align: top;
+            border-collapse: collapse;
+        }
+
+        .detail-1 {
+            font-size: 13px;
+            font-weight: bolder;
+        }
+
+        .detail-2 {
+            font-size: 13px;
+            /*padding-bottom: 8px;*/
+            color: #999;
+            font-weight: lighter;
+        }
+
+        .detail-3 {
+            line-height: 1.8em;
+            font-size: 12px;
+        }
+
+        .detail-4 {
+            padding: 3px 0 8px;
+        }
+
+        .detail-4, .detail-4 span{
+            font-style: italic;
+            color: #9e9e9e;
+            text-transform: uppercase;
+        }
+
+        #skills-table td {
+            padding: 8px 0 !important;
+            font-size: 12px;
+        }
+
+        #personal-table {
+            margin-bottom: 0;
+        }
+
+
+        #personal-table td {
+            font-size: 12px;
+        }
+
+        .field-label {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        .boxes {
+            margin-bottom: 15px !important;
+        }
+
+        #double-slash {
+            padding: 20px 0 0;
+            font-size: 2em;
+            color: #F8BC38;
+        }
+
+        .small-boxes {
+            margin-bottom: 3px !important;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<%
+var alMonths = [];
+
+alMonths.push('January');
+alMonths.push('February');
+alMonths.push('March');
+alMonths.push('April');
+alMonths.push('May');
+alMonths.push('June');
+alMonths.push('July');
+alMonths.push('August');
+alMonths.push('September');
+alMonths.push('October');
+alMonths.push('November');
+alMonths.push('December');
+
+%>
+
+
+
+<div class="row" id="heading">
+
+    <div class="columns small-7 large-7">
+
+        <%
+        var clsFirstName = [];
+        if(isPreview === "f") {
+
+            if(!resume.personal || !resume.personal.firstName) {
+                clsFirstName.push('showoff');
+            }
+        }
+        if(!resume.personal || !resume.personal.firstName) {
+            clsFirstName.push('disabledfield');
+        }
+        %>
+
+        <%
+        var clsLastName = [];
+        if(isPreview === "f") {
+            if(!resume.personal || !resume.personal.lastName) {
+                clsLastName.push('showoff');
+            }
+        }
+        if(!resume.personal || !resume.personal.lastName) {
+            clsLastName.push('disabledfield');
+        }
+        %>
+        <h1 id="name-block">
+            <span class="<%=clsFirstName.join(' ')%>"><%=resume.personal.firstName || 'FIRSTNAME' %></span>
+            <span id="lastName" class="<%=clsLastName.join(' ')%>"><%=resume.personal.lastName || 'LAST' %></span>
+        </h1>
+
+
+
+
+        <%
+        var clsHeadline = [];
+        if(isPreview === "f") {
+            if(!resume.resume || !resume.resume.headline || resume.resume.headline.trim().length === 0) {
+                clsHeadline.push('showoff');
+            }
+        }
+        if(!resume.resume || !resume.resume.headline || resume.resume.headline.trim().length === 0) {
+            clsHeadline.push('disabledfield');
+        }
+        %>
+        <p id="headline" class="<%=clsHeadline.join(' ')%>"><%=resume.resume.headline || 'creator of all things awesome / my awesome job title' %></p>
+    </div>
+
+
+    <!-- contanct block -->
+    <div class="columns small-5 large-5 heading-blocks">
+
+
+        <div class="row">
+
+            <div class="columns small-1 large-1" style="height: 100%;" id="double-slash">
+                //
+            </div>
+            <div class="columns small-11 large-11">
+                <div class="row small-boxes">
+
+                    <div class="columns small-12 large-12">
+                        <%
+                        var clsPhone = [];
+
+                        if(isPreview === "f") {
+                            if(!resume.personal || !resume.personal.phone || resume.personal.phone.trim().length === 0) {
+                                clsPhone.push('showoff');
+                            }
+                        }
+                        if(!resume.personal || !resume.personal.phone) {
+                            clsPhone.push('disabledfield');
+                        }
+                        %>
+                        <div class="row <%=clsPhone.join(' ')%>">
+                            <!--<div class="columns small-4 large-4"></div>-->
+                            <div class="columns small-12 large-12">
+
+                                <div class="row nopad">
+                                    <div class="columns small-1 large-1 nopad">
+                                        <i class="fa fa-phone blue nopad"></i>
+                                    </div>
+                                    <div class="columns small-11 large-11 nopad">
+                                        <%=resume.personal.phone || 'YOUR PHONE NO.'%>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="row small-boxes">
+                    <div class="columns small-12 large-12">
+                        <%
+                        var clsEmail = [];
+                        if(isPreview === "f") {
+                            if(!resume.personal || !resume.personal.email || resume.personal.email.trim().length === '0') {
+                                clsEmail.push('showoff');
+                            }
+                        }
+                        if(!resume.personal || !resume.personal.email) {
+                            clsEmail.push('disabledfield');
+                        }
+                        %>
+                        <div class="row <%=clsEmail.join(' ')%>">
+                            <!--<div class="columns small-4 large-4"></div>-->
+                            <div class="columns small-12 large-12">
+
+                                <div class="row nopad">
+                                    <div class="columns small-1 large-1 nopad">
+                                        <i class="fa fa-envelope-o blue nopad"></i>
+                                    </div>
+                                    <div class="columns small-11 large-11 nopad">
+                                        <%=resume.personal.email || 'your@email.id'%>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row small-boxes">
+                    <div class="columns small-12 large-12">
+                        <%
+                        var clsWebsite = [];
+                        if(isPreview === "f") {
+                            if(!resume.personal || !resume.personal.website) {
+                                clsWebsite.push('showoff');
+                            }
+                        }
+                        if(!resume.personal || !resume.personal.website) {
+                            clsWebsite.push('disabledfield');
+                        }
+                        %>
+                        <div class="row <%=clsWebsite.join(' ')%>">
+                            <!--<div class="columns small-4 large-4"></div>-->
+                            <div class="columns small-12 large-12">
+
+                                <div class="row nopad">
+                                    <div class="columns small-1 large-1 nopad">
+                                        <i class="fa fa-link blue nopad"></i>
+                                    </div>
+                                    <div class="columns small-11 large-11 nopad">
+                                        <%=resume.personal.website || 'http://your-web.com'%>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row small-boxes">
+                    <div class="columns small-12 large-12">
+                        <%
+                        var clsAddress = [];
+                        if(isPreview === "f") {
+                            if(!resume.personal || !resume.personal.address) {
+                                clsAddress.push('showoff');
+                            }
+                        }
+                        if(!resume.personal || !resume.personal.address) {
+                            clsAddress.push('disabledfield');
+                        }
+                        %>
+                        <div class="row <%=clsAddress.join(' ')%>">
+                            <div class="columns small-12 large-12 ">
+                                <div class="row nopad">
+                                    <div class="columns nopad small-1 large-1">
+                                        <i class="fa fa-home nopad"></i>
+                                    </div>
+                                    <div class="columns small-11 large-11 nopad">
+                                        <%=resume.personal.address|| '5 Morton St. Apt. 14, New York, NY 10014'%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="columns small-7 large-7">
+        <!-- objective block -->
+        <%
+        var clsObjective = [];
+
+        if(isPreview === "f") {
+            if(!resume.resume || !resume.resume.objective || resume.resume.objective.trim().length === 0) {
+                clsObjective.push('showoff');
+            }
+        }
+
+        if(!resume.resume || !resume.resume.objective || resume.resume.objective.trim().length === 0) {
+            clsObjective.push('disabledfield');
+        }
+        %>
+        <div class="blocks row <%=clsObjective.join(' ')%>">
+            <div class="columns small-12 large-12">
+                <div class="block-title">
+                    <i class="fa">//</i> <%=resume.label.glObjective || 'Objective'%>
+                </div>
+                <div class="block-body">
+                    <div class="row">
+                        <div class="column small-1 large-1">
+                            <!--<i class="fa fa-quote-left fa-5x"></i> &nbsp;-->
+                            &nbsp;
+                        </div>
+                        <div class="columns small-11 large-11" id="objective-block">
+                            <%=resume.resume.objective%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end of objective block -->
+
+
+
+
+
+
+        <% if((resume.experiences && resume.experiences.length > 0) || isPreview === 't') {%>
+        <div class="row blocks">
+            <div class="columns small-12 large-12">
+                <div class="block-title">
+                    <i class="fa">//</i> <%=resume.label.glExperience|| 'Work Experience'%>
+                </div>
+
+                <div class="block-body">
+
+                    <%
+                    if(resume.experiences && resume.experiences.length > 0) {
+                    for (var ex = 0; ex < resume.experiences.length; ex++) {
+                    var pe = resume.experiences[ex];
+                    %>
+
+                    <div class="row" >
+
+                        <div class="columns small-1 large-1" >
+                            &nbsp;
+                        </div>
+
+                        <div class="columns small-11 large-11 detail-description">
+                            <span class="fa fa-circle"></span>
+                            <%
+                                var clsDesignation = [];
+
+                                if(isPreview === "f") {
+                                    if(!pe.designation || pe.designation.trim().length === 0) {
+                                        clsDesignation.push('showoff');
+                                    }
+                                }
+
+                                if(!pe.designation || pe.designation.trim().length === 0) {
+                                    clsDesignation.push('disabledfield');
+                                }
+                            %>
+
+
+                            <%
+                                var clsCompany = [];
+
+                                if(isPreview === "f") {
+                                    if(!pe.company || pe.company.trim().length === 0) {
+                                        clsCompany.push('showoff');
+                                    }
+                                }
+
+                                if(!pe.company || pe.company.trim().length === 0) {
+                                    clsCompany.push('disabledfield');
+                                }
+                            %>
+
+
+
+                            <div class="detail-1 <%=clsDesignation.join(' ')%>">
+                                <%=pe.designation|| 'Designation'%> <span class="detail-2 <%=clsCompany.join(' ')%>">@ <%=pe.company|| 'Company Pvt. Ltd.'%></span>
+                            </div>
+
+
+
+
+                            <div class="detail-4">
+                                <span>
+                                <% if(alMonths[pe.startMonth]) {%>
+
+                                <%=alMonths[pe.startMonth].slice(0,3)%>
+
+                                <% } else { %>
+
+                                <%='Month'%>
+                                <% } %>
+
+
+
+                                </span>
+
+                                <span class="<%=pe.startYear ? '' : 'disabledfield'%>">
+                                    <%=pe.startYear|| 'Start'%> to
+                                </span>
+
+                                <% if(pe.isPresent) { %>
+                                <span>Present</span>
+
+                                <% } else { %>
+                                <span class="<%=pe.endMonth ? '' : 'disabledfield'%>">
+
+                                    <%
+
+                                    if(alMonths[pe.endMonth]) {
+                                    %>
+                                    <%=alMonths[pe.endMonth].slice(0,3)%>
+
+
+                                    <%
+                                    } else {
+                                    %>
+
+                                    <%='Month'%>
+
+                                    <%}
+                                    %>
+
+
+                                </span>
+                                <span class="<%=pe.endYear ? '' : 'disabledfield'%>">
+                                    <%=pe.endYear || 'End'%>
+                                </span>
+                                <% }%>
+                            </div>
+
+
+
+                            <%
+                                var clsDescription = [];
+
+                                if(isPreview === "f") {
+                                    if(!pe.company || pe.company.trim().length === 0) {
+                                        clsDescription.push('showoff');
+                                    }
+                                }
+
+                                if(!pe.company || pe.company.trim().length === 0) {
+                                    clsDescription.push('disabledfield');
+                                }
+                            %>
+                            <div class="detail-3 <%=clsDescription.join(' ')%>">
+                                <%=pe.description|| 'At this job you will be doing Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius massa sed ex euismod hendrerit. Vivamus vehicula turpis vitae ornare dignissim. Etiam at magna turpis. Sed vitae placerat risus. In hac habitasse platea dictumst. Pellentesque condimentum dolor augue, sit amet facilisis urna vehicula vitae. Sed vel leo in magna maximus fringilla. Etiam congue massa sed eros eleifend, et tristique elit dictum'%>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <%
+                    } }
+                    %>
+
+                </div>
+            </div>
+        </div>
+
+        <% } %> <!-- end of work experience block -->
+
+
+
+        <% if((resume.projects && resume.projects.length > 0) || isPreview === 't') {%>
+        <div class="row blocks">
+            <div class="columns small-12 large-12">
+                <div class="block-title">
+                    <i class="fa">//</i> <%=resume.label.glProjects || 'Projects'%>
+                </div>
+
+                <div class="block-body">
+
+                    <!--<table width="100%" class="detail-table">-->
+                        <!--<tbody>-->
+
+                        <%
+
+                        if(resume && resume.projects) {
+
+
+                        for (var pr = 0; pr < resume.projects.length; pr++) {
+
+                            var oj= resume.projects[pr];
+                        %>
+
+                    <div class="row boxes">
+                        <div class="columns small-1 large-1">
+                            &nbsp;
+                        </div>
+                        <div class="columns small-11 large-11">
+                            <%
+                                var clsProjectName = [];
+                                if(isPreview === "f") {
+                                    if(!oj.name || oj.name.trim().length === 0) {
+                                        clsProjectName.push('showoff');
+                                    }
+                                }
+                                if(!oj.name || oj.name.trim().length === 0) {
+                                    clsProjectName.push('disabledfield');
+                                }
+                            %>
+                            <div class="detail-1 <%=clsProjectName.join(' ')%>">
+                                <%=oj.name|| 'Random MBA'%>
+                            </div>
+
+                            <%
+                                var clsProjectUrl = [];
+                                if(isPreview === "f") {
+                                    if(!oj.url || oj.url.trim().length === 0) {
+                                        clsProjectUrl.push('showoff');
+                                    }
+                                }
+                                if(!oj.url || oj.url.trim().length === 0) {
+                                    clsProjectUrl.push('disabledfield');
+                                }
+                            %>
+                            <div class="detail-2 <%=clsProjectUrl.join(' ')%>">
+                                <%=oj.url|| 'Coolest school'%>
+                            </div>
+
+
+                            <%
+                                var clsProjectKeywords = [];
+                                if(isPreview === "f") {
+                                    if(!oj.keywords || oj.keywords.trim().length === 0) {
+                                        clsProjectKeywords.push('showoff');
+                                    }
+                                }
+                                if(!oj.keywords || oj.keywords.trim().length === 0) {
+                                    clsProjectKeywords.push('disabledfield');
+                                }
+                            %>
+                            <div class="detail-4 <%=clsProjectKeywords.join(' ')%>">
+                                built using: <%=oj.keywords || 'Coolest school'%>
+                            </div>
+
+
+                            <%
+                                var clsProjectDescription = [];
+                                if(isPreview === "f") {
+                                    if(!oj.description || oj.description.trim().length === 0) {
+                                        clsProjectDescription.push('showoff');
+                                    }
+                                }
+                                if(!oj.description || oj.description.trim().length === 0) {
+                                    clsProjectDescription.push('disabledfield');
+                                }
+                            %>
+                            <div class="detail-3 <%=clsProjectDescription%>">
+                                <%=oj.description|| 'Coolest school'%>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                        <%
+                        }
+                        }
+                        %>
+                        <!--</tbody>-->
+                    <!--</table>-->
+                </div>
+            </div>
+        </div>
+
+        <%
+        }
+        %> <!-- end of projects -->
+
+    </div> <!-- left side columns -->
+
+
+
+
+
+
+    <div class="columns small-5 large-5">
+
+
+
+
+        <% if((resume.skills && resume.skills.length > 0) || isPreview === 't') {%>
+        <div class="row blocks">
+
+            <div class="columns small-12 large-12">
+                <div class="block-title">
+                    <i class="fa">//</i> <%=resume.label.skTechnical || 'Skills'%>
+                </div>
+
+                <div class="block-body">
+
+
+
+                        <%
+                        if(resume && resume.skills) {
+                        for (var ski = 0; ski < resume.skills.length; ski++) {
+//                            var ls = resume.skills[ski];
+//                            var perc = ls.rating*10;
+
+                            var ls = resume.skills[ski];
+
+                            var perc = ls.rating*10;
+                        %>
+
+
+                        <div class="row">
+
+                            <div class="columns small-1 large-1" >
+                                &nbsp;
+                            </div>
+                            <div class="columns small-11 large-11">
+                                <div class="row">
+                                    <div class="column small-4 large-4">
+                                        <%=ls.name%>
+                                    </div>
+                                    <div class="columns small-8 large-8">
+                                        <div class="progress success" style="height: 8px;border:1px solid #DDD;padding:0;margin-top: 2px;">
+                                            <span class="meter" style="width:<%=perc%>%;height: 6px;background-color:#F8BC38"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <%
+                        }
+                        }
+                        %>
+
+                </div>
+            </div>
+        </div>
+        <%
+        }
+        %>
+
+
+
+
+
+        <% if((resume.education && resume.education.length > 0) || isPreview === 't') {%>
+        <div class="row blocks">
+            <div class="columns small-12 large-12">
+                <div class="block-title">
+                    <i class="fa">//</i> <%=resume.label.glEducation || 'Qualification'%>
+                </div>
+                <div class="block-body">
+                        <%
+                        if(resume.education && resume.education.length > 0) {
+                            for (var ed = 0; ed < resume.education.length; ed++) {
+                                var ca = resume.education[ed];
+                        %>
+
+                        <div class="row">
+                            <div class="columns small-1 large-1">
+                                &nbsp;
+                            </div>
+                            <div class="columns small-11 large-11">
+
+                                <%
+                                    var clsDegree = [];
+                                    if(isPreview === "f") {
+                                        if(!ca.degree || ca.degree.trim().length === 0) {
+                                            clsDegree.push('showoff');
+                                        }
+                                    }
+                                    if(!ca.degree || ca.degree.trim().length === 0) {
+                                        clsDegree.push('disabledfield');
+                                    }
+                                %>
+
+                                <%
+                                    var clsSchool = [];
+                                    if(isPreview === "f") {
+                                        if(!ca.school || ca.school.trim().length === 0) {
+                                            clsSchool.push('showoff');
+                                        }
+                                    }
+                                    if(!ca.school || ca.school.trim().length === 0) {
+                                        clsSchool.push('disabledfield');
+                                    }
+                                %>
+                                <div class="detail-1 <%=clsDegree.join(' ')%>">
+                                    <%=ca.degree|| 'Random MBA'%>  <span class="detail-2 <%=clsSchool.join(' ')%>">@ <%=ca.school|| 'Coolest school'%></span>
+                                </div>
+
+
+                                <div class="detail-4">
+                                    <span class="<%=ca.startYear ? '' : 'disabledfield'%>">
+                                <%=ca.startYear|| 'Start'%> -</span><span class="<%=ca.endYear ? '' : 'disabledfield'%>">
+                                <%=ca.endYear || 'End'%>
+                            </span>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                        <%
+                            }
+                        }
+                        %>
+                </div>
+            </div>
+        </div> <!-- end of education block -->
+        <%
+        }
+        %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <% if((resume.skills && resume.skills.length > 0) || isPreview === 't') {%>
+        <div class="row blocks">
+            <div class="columns small-12 large-12">
+                <div class="block-title">
+                    <i class="fa">//</i> <%=resume.label.glLanguages || 'Languages'%>
+                </div>
+                <div class="block-body">
+
+                    <%
+                    if(resume && resume.languages) {
+                        for (var lang = 0; lang < resume.languages.length; lang++) {
+                            var language = resume.languages[lang];
+                    %>
+
+                    <div class="row">
+                        <div class="columns small-1 large-1">
+                            &nbsp;
+                        </div>
+                        <div class="columns small-11 large-11">
+                            <div class="detail-1">
+                                <%=language.name%>
+                            </div>
+                            <div class="detail-2">
+                                <%=language.rating%>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                        }
+                    }
+                    %>
+
+                </div>
+            </div>
+        </div>
+
+        <%
+        }
+        %>
+
+    </div> <!-- end of right blocks -->
+</div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

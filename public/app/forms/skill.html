@@ -1,0 +1,104 @@
+<style type="text/css">
+    .item-skill {
+        display: inline-block;
+        border: 0px;
+        margin: 0 10px 20px 0;
+        vertical-align: middle;
+        padding: 0 0 0 5px;
+        /*border: 1px solid #e0c9ea;*/
+    }
+
+    .item-skill table {
+        border-collapse: collapse;
+    }
+
+    .item-skill td{
+        vertical-align: middle;
+        padding: 0;
+        margin: 0;
+    }
+
+    .item-skill .skill-name {
+        padding: 0 15px 0 8px !important;
+        border: 1px solid #e0c9ea;
+    }
+
+
+
+
+</style>
+<div class="bar skills">
+    <a class="button button-clear button-dark" style="color:#FFF;">skills</a>
+    <h1 class="title">&nbsp;</h1>
+    <a class="button button-clear fa fa-angle-double-left button-dark" ng-click="closeMenu();"></a>
+</div>
+<ion-content class="panel skills nobg border-2px">
+
+    <div class="card" style="margin-top: 0;">
+        <div class="item item-divider">
+            Existing skills
+        </div>
+        <div class="item item-text-wrap">
+
+
+            <div class="item-skill" ng-repeat="s in skills" >
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+
+                            <td class="skill-name" >{{s.name}}</td>
+
+                            <td>
+                                <a class="button button-small button-outline button-dark icon fa fa-pencil" ng-click="editSkill('{{s}}')"></a>
+                            </td>
+                            <td>
+                                <a class="button button-small button-outline button-assertive icon fa fa-trash" ng-click="doDelete(s)"></a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="item item-divider">
+            Add new skill
+        </div>
+        <div class="item item-text-wrap">
+            <form class="pure-form" ng-submit="doSave()">
+
+                <input type="hidden" name="skillId" ng-model="skill._id"/>
+
+                <div class="row">
+                    <div class="columns small-12 large-12">
+                        <label for="name">Skill name</label>
+                        <input type="text" id="name" ng-model="skill.name"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-12 large-12">
+                        <label for="rating">Rating out of 10</label>
+                        <input type="number" id="rating" min="0" max="10" step="1" name="rating" ng-model="skill.rating">
+                    </div>
+                </div>
+                <div class="row">
+                    <!--<div class="col">-->
+                        <button class="button button-stable" style="margin-left: 10px" type="reset">Reset</button>
+                        <div class="col"></div>
+                        <button type="submit" class="button button-positive" style="margin-right: 10px">Save</button>
+                    <!--</div>-->
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+
+</ion-content>

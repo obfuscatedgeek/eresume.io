@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../vendor/foundation/css/normalize.css" media="all"/>
+    <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css" media="all"/>
+    <link rel="stylesheet" href="../vendor/foundation/css/foundation.css" media="all"/>
+
+
+    <style type="text/css">
+
+
+        @font-face {
+            font-family: 'OpenSans';
+            src: url('../vendor/fonts/Open-Sans-Font/OpenSans-Regular.ttf');
+            /*src: url('../vendor/webfonts/BLOKKNeue-Regular.eot?#iefix') format('embedded-opentype'),*/
+            /*url('../vendor/webfonts/BLOKKNeue-Regular.woff') format('woff'),*/
+            /*url('../vendor/webfonts/BLOKKNeue-Regular.svg#BLOKKRegular') format('svg');*/
+            font-weight: normal;
+            font-style: NORMAL;
+        }
+
+        * {
+            color: #333;
+            font-size: 14px;
+            font-family: OpenSans;
+        }
+
+        div.blocks {
+            margin-bottom: 25px;
+        }
+
+
+        .showoff {
+            display: none !important;
+        }
+
+        div.block {
+            margin-bottom: 10px;
+        }
+
+        div.block label {
+            color: #35A970;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        div.block div.body {
+            color: #444;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+
+        div#name h1 span {
+            font-size: 1.3em;
+            color: #35A970;
+            text-transform: uppercase;
+        }
+
+        p#objective {
+            font-size: 16px;
+        }
+
+
+
+
+        div.separator {
+            margin-bottom: 20px;
+            border-top: 1px solid #CCC;;
+        }
+
+        div.separator .title {
+            font-size: 20px;
+            color: #35A970;
+            padding: 0 8px;
+            margin-top: -15px !important;
+            position: absolute;
+            background-color: #FFF;
+            display: inline-block;
+        }
+
+
+        div.detail-block {
+            padding: 15px 10px;
+        }
+
+        div.detail-block .work-designation {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        div.detail-block .work-company {
+            font-size: 15px;
+            text-transform: capitalize;
+        }
+
+    </style>
+</head>
+<body>
+
+<%
+var alMonths = [];
+
+alMonths.push('January');
+alMonths.push('February');
+alMonths.push('March');
+alMonths.push('April');
+alMonths.push('May');
+alMonths.push('June');
+alMonths.push('July');
+alMonths.push('August');
+alMonths.push('September');
+alMonths.push('October');
+alMonths.push('November');
+alMonths.push('December');
+%>
+
+
+<div class="row blocks">
+    <div class="columns small-4 large-4">
+
+        <%
+        var clsWebsite = [];
+        if(isPreview === "f") {
+            if(!resume.personal || !resume.personal.website) {
+                clsWebsite.push('showoff');
+            }
+        }
+        if(!resume.personal || !resume.personal.website) {
+            clsWebsite.push('disabledfield');
+        }
+        %>
+        <div class="block <%=clsWebsite.join(' ')%>">
+            <label for="">WEBSITE</label>
+            <div class="body"><%=resume.personal.website || ''%></div>
+        </div>
+
+
+
+        <%
+        var clsPhone = [];
+
+        if(isPreview === "f") {
+            if(!resume.personal || !resume.personal.phone || resume.personal.phone.trim().length === 0) {
+                clsPhone.push('showoff');
+            }
+        }
+        if(!resume.personal || !resume.personal.phone) {
+            clsPhone.push('disabledfield');
+        }
+        %>
+        <div class="block <%=clsPhone.join(' ')%>">
+            <label for="">MOBILE</label>
+            <div class="body"><%=resume.personal.phone%></div>
+        </div>
+
+
+
+        <%
+        var clsEmail = [];
+        if(isPreview === "f") {
+            if(!resume.personal || !resume.personal.email || resume.personal.email.trim().length === '0') {
+                clsEmail.push('showoff');
+            }
+        }
+        if(!resume.personal || !resume.personal.email) {
+            clsEmail.push('disabledfield');
+        }
+        %>
+        <div class="block <%=clsEmail.join(' ')%>">
+            <label for="">EMAIL</label>
+            <div class="body"><%=resume.personal.email %></div>
+        </div>
+
+
+        <%
+        var clsAddress = [];
+        if(isPreview === "f") {
+            if(!resume.personal || !resume.personal.address) {
+                clsAddress.push('showoff');
+            }
+        }
+        if(!resume.personal || !resume.personal.address) {
+            clsAddress.push('disabledfield');
+        }
+        %>
+        <div class="block <%=clsAddress.join(' ')%>">
+            <label for="">ADDRESS</label>
+            <div class="body"><%=resume.personal.address%></div>
+        </div>
+
+
+    </div>
+
+    <div class="columns small-8 large-8">
+
+        <div id="name">
+
+            <%
+            var clsFirstName = [];
+            if(isPreview === "f") {
+
+                if(!resume.personal || !resume.personal.firstName) {
+                    clsFirstName.push('showoff');
+                }
+            }
+            if(!resume.personal || !resume.personal.firstName) {
+                clsFirstName.push('disabledfield');
+            }
+            %>
+
+            <%
+            var clsLastName = [];
+            if(isPreview === "f") {
+                if(!resume.personal || !resume.personal.lastName) {
+                    clsLastName.push('showoff');
+                }
+            }
+            if(!resume.personal || !resume.personal.lastName) {
+                clsLastName.push('disabledfield');
+            }
+            %>
+
+            <h1>
+                <span class="<%=clsFirstName.join(' ')%>"><%=resume.personal.firstName || 'FIRSTNAME' %></span>
+                <span id="lastName" class="<%=clsLastName.join(' ')%>"> <%=resume.personal.lastName || 'LAST' %></span>
+            </h1>
+        </div>
+
+
+        <%
+        var clsObjective = [];
+
+        if(isPreview === "f") {
+            if(!resume.resume || !resume.resume.objective || resume.resume.objective.trim().length === 0) {
+                clsObjective.push('showoff');
+            }
+        }
+
+        if(!resume.resume || !resume.resume.objective || resume.resume.objective.trim().length === 0) {
+            clsObjective.push('disabledfield');
+        }
+        %>
+        <p class="<%=clsObjective.join(' ')%>" id="objective">
+            <%=resume.resume.objective|| 'An eye catching object that would attract the potential headhunters. '%>
+        </p>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="row separator">
+    <div class="columns small-4 large-4">
+        <div class="title"></div>
+    </div>
+    <div class="columns small-8 large-8">
+        <div class="title"><%=resume.label.glExperience|| 'Work Experience'%></div>
+    </div>
+</div>
+
+
+<div class="row blocks">
+
+    <div class="columns small-12 large-12">
+
+        <% for (var ex = 0; ex < resume.experiences.length; ex++) {
+
+            var pe = resume.experiences[ex];
+        %>
+
+        <div class="row detail-block">
+            <div class="columns small-4 large-4">
+
+                <%
+                    var clsDesignation = [];
+
+                    if(isPreview === "f") {
+                        if(!pe.designation|| pe.designation.trim().length === 0) {
+                            clsDesignation.push('showoff');
+                        }
+                    }
+
+                    if(!pe.designation || pe.designation.trim().length === 0) {
+                        clsDesignation.push('disabledfield');
+                    }
+                %>
+                <div class="<%=clsDesignation.join(' ')%> work-designation">
+                    <%=pe.designation|| 'Designation'%>
+                </div>
+
+
+                <%
+                    var clsCompany = [];
+
+                    if(isPreview === "f") {
+                        if(!pe.company || pe.company.trim().length === 0) {
+                            clsCompany.push('showoff');
+                        }
+                    }
+
+                    if(!pe.company || pe.company.trim().length === 0) {
+                        clsCompany.push('disabledfield');
+                    }
+                %>
+                <div class="<%=clsCompany.join(' ')%> work-company">
+                    <%=pe.company|| 'Company Pvt. Ltd.'%>
+                </div>
+                <div class="work-duration">
+
+
+                                <span class="<%=pe.startMonth ? '' : 'disabledfield'%>">
+                                    <%=alMonths[pe.startMonth]|| 'Month'%>
+                                </span>
+
+                                <span class="<%=pe.startYear ? '' : 'disabledfield'%>">
+                                    <%=pe.startYear|| 'Start'%> -
+                                </span>
+
+                    <% if(pe.isPresent) { %>
+                    <span>Present</span>
+
+                    <% } else { %>
+                    <span class="<%=pe.endMonth ? '' : 'disabledfield'%>">
+                                    <%=alMonths[pe.endMonth ]|| 'Month'%>
+                                </span>
+                                <span class="<%=pe.endYear ? '' : 'disabledfield'%>">
+                                    <%=pe.endYear || 'End'%>
+                                </span>
+                    <% }%>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="columns small-8 large-8">
+                <%=pe.description|| 'At this job you will be doing Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius massa sed ex euismod hendrerit. Vivamus vehicula turpis vitae ornare dignissim. Etiam at magna turpis. Sed vitae placerat risus. In hac habitasse platea dictumst. Pellentesque condimentum dolor augue, sit amet facilisis urna vehicula vitae. Sed vel leo in magna maximus fringilla. Etiam congue massa sed eros eleifend, et tristique elit dictum'%>
+            </div>
+        </div>
+
+        <% } %>
+
+    </div>
+
+</div>
+
+
+<div class="row separator">
+    <div class="columns small-4 large-4">
+        <div class="title"></div>
+    </div>
+    <div class="columns small-8 large-8">
+        <div class="title"><%=resume.label.glEducation || 'Qualification'%>
+        </div>
+    </div>
+</div>
+
+
+<div class="row blocks">
+
+    <div class="columns small-12 large-12">
+
+        <% for (var ed = 0; ed < resume.education.length; ed++) {
+
+            var ca = resume.education[ed];
+        %>
+        <div class="row detail-block">
+            <div class="columns small-4 large-4">
+
+
+
+                <div class="work-duration">
+                    <div>
+                            <span class="<%=ca.startYear ? '' : 'disabledfield'%>">
+                                <%=ca.startYear|| 'Start'%> -
+                            </span>
+                            <span class="<%=ca.endYear ? '' : 'disabledfield'%>">
+                                <%=ca.endYear || 'End'%>
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns small-8 large-8">
+                <div class="work-designation">
+                    <%=ca.degree|| 'Random MBA'%>
+                </div>
+
+                <div class="work-company">
+                    <%=ca.school|| 'Coolest school'%>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+    </div>
+
+</div>
+
+
+
+<div class="row separator">
+    <div class="columns small-4 large-4">
+        <div class="title"></div>
+    </div>
+    <div class="columns small-8 large-8">
+        <div class="title"><%=resume.label.glProjects || 'Projects'%></div>
+    </div>
+</div>
+
+
+<div class="row blocks">
+
+    <div class="columns small-12 large-12">
+
+        <%
+
+        if(resume && resume.projects) {
+
+
+            for (var pr = 0; pr < resume.projects.length; pr++) {
+
+                var oj= resume.projects[pr];
+        %>
+        <div class="row detail-block">
+            <div class="columns small-4 large-4">
+                <div class="work-company" style="text-transform: lowercase">
+                    <%=oj.url|| 'Coolest school'%>
+                </div>
+                <div class="work-duration">
+                    <%=oj.keywords || 'Coolest school'%>
+                </div>
+            </div>
+
+            <div class="columns small-8 large-8">
+                <div class="work-designation"><%=oj.name|| 'Random MBA'%></div>
+                <div>
+                    <%=oj.description|| 'Coolest school'%>
+                </div>
+            </div>
+        </div>
+
+        <%
+        }
+        }
+        %>
+
+
+    </div>
+
+</div>
+
+
+<div class="row separator">
+    <div class="columns small-4 large-4">
+        <div class="row" style="padding-bottom: 20px">
+            <div class="columns small-4 large-4">
+                <div class="title"></div>
+            </div>
+            <div class="columns small-8 large-8">
+                <div class="title" ><%=resume.label.glLanguages || 'Languages'%></div>
+            </div>
+        </div>
+
+        <%
+        if(resume && resume.languages) {
+
+            for (var lang = 0; lang < resume.languages.length; lang++) {
+
+                var language = resume.languages[lang];
+
+        //                    var perc = ls.rating*10;
+        %>
+
+        <div class="row detail-block">
+
+            <div class="columns large-12 work-designation">
+                <%=language.name%>
+            </div>
+            <div class="columns large-12">
+                <%=language.rating%>
+            </div>
+
+        </div>
+
+
+
+        <% }}%>
+    </div>
+
+    <div class="columns small-8 large-8">
+        <div class="row" style="padding-bottom: 20px">
+            <div class="columns small-4 large-4">
+                <div class="title"></div>
+            </div>
+            <div class="columns small-8 large-8">
+                <div class="title"><%=resume.label.skTechnical || 'Skills'%></div>
+            </div>
+        </div>
+
+
+
+        <div class="row detail-block">
+            <ul class="small-block-grid-3" sty>
+
+            <%
+            if(resume && resume.skills) {
+
+                for (var ski = 0; ski < resume.skills.length; ski++) {
+
+                    var ls = resume.skills[ski];
+
+                    var perc = ls.rating*10;
+            %>
+
+                <li class="skill-items">
+                    <%=ls.name%> <span class="skillPercent">(<%=perc%>%)</span>
+                    <div class="progress success" style="height: 8px;">
+                        <span class="meter" style="width:<%=perc%>%;height: 3px;"></span>
+                    </div>
+                </li>
+
+
+            <% }}%>
+
+                </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

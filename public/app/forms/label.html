@@ -1,0 +1,124 @@
+<div class="bar labels">
+    <a class="button button-clear button-dark" style="color:#FFF;">labels</a>
+    <h1 class="title">&nbsp;</h1>
+    <a class="button button-clear fa fa-angle-double-left button-dark" ng-click="closeMenu();"></a>
+</div>
+<ion-content class="panel labels nobg border-2px">
+
+    <form class="pure-form" id="labels-form" ng-submit="doSave()">
+
+        <div class="card">
+            <div class="item item-divider">
+                General Labels
+            </div>
+            <div class="item">
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Objective</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.glObjective"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">About Me</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.glAboutMe"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Experience</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.glExperience"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Education</div>
+                    <div class="columns small-8 large-8"><input type="text"  ng-model="label.glEducation"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Skills</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.glSkills"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Languages</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.glLanguages"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Projects</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.glProjects"/></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                Personal Information Labels
+            </div>
+            <div class="item">
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Name</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.piName"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Date Of Birth</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.piDob"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Address</div>
+                    <div class="columns small-8 large-8"><input type="text"  ng-model="label.piAddress"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Website</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.piWebsite"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Phone</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.piPhone"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Nationality</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.piNationality"/></div>
+                </div>
+
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Marital Status</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.piMaritalStatus"/></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="item item-divider">Skill Information Labels</div>
+            <div class="item">
+                <div class="row">
+                    <div class="columns small-4 large-4 labelling">Technical Skills</div>
+                    <div class="columns small-8 large-8"><input type="text" ng-model="label.skTechnical"/></div>
+                </div>
+
+                <!--<div class="row">-->
+                    <!--<div class="columns small-4 large-4 labelling">Personal Skills</div>-->
+                    <!--<div class="columns small-8 large-8"><input type="text" ng-model="label.skPersonal"/></div>-->
+                <!--</div>-->
+            </div>
+        </div>
+
+        <div class="row">
+            <!--<div class="col">-->
+            <button class="button button-stable" style="margin-left: 10px" type="reset">Reset</button>
+            <div class="col"></div>
+            <button type="submit" class="button button-positive" style="margin-right: 10px">Save</button>
+            <!--</div>-->
+        </div>
+    </form>
+
+
+
+
+
+</ion-content>

@@ -1,0 +1,7 @@
+<ion-list>
+    <a class="item left-menu" ng-repeat="item in dashMenuCtrl.menuItems" ng-click="onMenuItemClick(item)" ui-sref="{{item.href}}" id="{{item.id}}">
+        <p class="icon"><i class="icon {{item.icon}}"></i></p>
+        <p class="description">{{item.title}}</p>
+    </a>
+</ion-list>
+

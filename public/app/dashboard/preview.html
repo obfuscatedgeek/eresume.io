@@ -1,0 +1,17 @@
+<ion-pane>
+    <ion-nav-view class="col col-66 nobg no-pad paper has-header" name="frameContainer" id="frame-container">
+    </ion-nav-view>
+
+    <div class="bar bar-header bar-stable title-left">
+        <a class="button fa fa-file-pdf-o fa-3x button-assertive" href="/getPdf?modelId={{resumeId}}" target="_blank"></a> &nbsp;
+        <a class="button fa fa-link fa-3x button-dark" href="/templates/professional?modelId={{resumeId}}&isPreview=f" target="_blank"></a> &nbsp;
+        <a class="button fa fa-twitter button-outline button-light fa-3x twitter-colored-bg"  href="https://twitter.com/intent/tweet?button_hashtag=eresume.io&text=My online resume at&url=http://www.eresume.io/templates/professional?modelId={{resumeId}}" target="_blank" data-url="https://dev.twitter.com"></a>
+        <script type="text/javascript">
+            window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
+        </script>
+
+    </div>
+
+    <ion-nav-view class="col col-33 col-offset-66 no-pad" name="templateContainer" class="whitebg paper" id="templateListing">
+    </ion-nav-view>
+</ion-pane>

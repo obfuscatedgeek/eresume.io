@@ -1,0 +1,40 @@
+<div class="bar resume">
+    <a class="button button-clear button-dark" href="">resume</a>
+    <h1 class="title">&nbsp;</h1>
+    <a class="button button-clear fa fa-angle-double-left button-dark" ng-click="closeMenu();"></a>
+</div>
+<ion-content class="has-header panel resume nobg border-2px">
+
+    <form class="pure-form" name="formResume" ng-submit="doSave()">
+
+        <p>
+            <label for="title" class="text-1x">Resume Title</label>
+            <input class="text-2x" type="text" id="title" placeholder="Application for Miami Police Department" ng-model="resume.title"/>
+        </p>
+
+        <p>
+            <label for="title" class="text-1x">Professional Headline</label>
+            <input class="text-2x" type="text" id="title" placeholder="Visionary entrepreneur / Blood splatter expert" ng-model="resume.headline"/>
+        </p>
+
+        <p>
+            <label for="objective" class="text-1x">Objective</label>
+            <textarea name="" id="objective" cols="30" rows="10" class="text-2x" placeholder="I am passionate about ..."  ng-model="resume.objective"></textarea>
+        </p>
+
+
+        <p>
+            <div class="row">
+                <button type="submit" class="button button-stable">Reset</button>
+                <div class="col"></div>
+                <button class="button button-positive">Save</button>
+            </div>
+        </p>
+
+
+
+
+
+    </form>
+
+</ion-content>

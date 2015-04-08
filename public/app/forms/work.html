@@ -1,0 +1,160 @@
+<div class="bar work">
+    <a class="button button-clear button-dark" href="">work</a>
+    <h1 class="title">&nbsp;</h1>
+    <a class="button button-clear fa fa-angle-double-left button-dark" ng-click="closeMenu();"></a>
+</div>
+
+<ion-pane class="nobg work border-2px">
+<ion-tabs class="tabs-striped tabs-top tabs-background-clear tabs-dark tabs-stable tabs-top tabs-icon-top slide-left-right-ios7">
+
+    <ion-tab title="Edit Existing" icon-on="fa fa-pencil" icon-off="fa fa-pencil">
+        <!-- Tab 2 content -->
+        <ion-content class="has-header panel" style="background-color: #F9F9F9;">
+
+            <div ng-repeat="ed in alExperience" class="card">
+
+
+
+
+
+                <div class="item">
+
+
+                    <table width="100%">
+                        <tbody>
+                        <tr>
+                            <td style="width: 90%">
+                                <h2 class="title">
+                                    {{ed.designation}}
+                                </h2>
+                                <p>
+                                    {{ed.company}}
+                                </p>
+                            </td>
+                            <td>
+
+                                <a class="button button-clear">
+                                    <!--<i class="icon ion-arrow-down-a"></i>-->
+                                </a>
+
+                                <a class="button button-clear">
+                                    <!--<i class="icon ion-arrow-down-a"></i>-->
+                                </a>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="item item-divider">
+                    <!--I'm a-->
+                    <!--<div class="item">-->
+                    <p class="user-action">
+                        <a ng-click="doEdit(ed)" class="fa fa-pencil cursor"> edit</a>
+                        <a class="cursor assertive fa fa-trash col-offset-80" ng-click="doDelete(ed)"> delete</a>
+                    </p>
+                </div>
+
+            </div>
+
+        </ion-content>
+    </ion-tab>
+
+    <ion-tab title="Add New" icon-on="fa fa-plus-circle" icon-off="fa fa-plus-circle">
+        <ion-content class="has-header panel" style="background-color: #F9F9F9">
+
+            <form class="pure-form" ng-submit="doSave()">
+
+                <input type="hidden" name="id" ng-model="experience._id"/>
+                <p>
+                    <label for="company">Company</label>
+                    <input id="company" type="text" ng-model="experience.company"/>
+                </p>
+
+                <p>
+                    <label for="designation">Designation</label>
+                    <input id="designation" type="text" ng-model="experience.designation"/>
+                </p>
+
+                <p>
+                <div class="row no-pad">
+                    <div class="col">
+                        <label for="startDate">Start Date</label>
+                        <div class="row">
+                            <select name="startMonth" id="startMonth" ng-model="experience.startMonth"  ng-options="opt.index as opt.display for opt in data.months">
+                                <!--<option ng-repeat="m in data.months" value="{{m.index}}">{{m.display}}</option>-->
+                            </select>
+                            <select name="startYear" id="startYear" ng-model="experience.startYear"  ng-options="opt as opt for opt in data.year">
+                                <!--<option ng-repeat="y in data.year" value="{{y}}">{{y}}</option>-->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="endDate">End Date</label>
+                        <div class="row">
+                            <select name="endMonth" id="endMonth" ng-model="experience.endMonth" ng-options="opt.index as opt.display for opt in data.months" ng-disabled="experience.isPresent">
+                                <!--<option ng-repeat="m in data.months" value="{{m.index}}">{{m.display}}</option>-->
+                            </select>
+                            <select name="endYear" id="endYear" ng-model="experience.endYear" ng-options="opt as opt for opt in data.year"  ng-disabled="experience.isPresent">
+                                <!--<option ng-repeat="y in data.year" value="{{y}}">{{y}}</option>-->
+                            </select>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <input type="checkbox" id="isPresent" ng-model="experience.isPresent" style="margin-top: 3px;"/> &nbsp;I currently work here
+                        </div>
+                    </div>
+                </div>
+                </p>
+
+                <!--<p ng-repeat="r in experience.responsibilities">-->
+                    <!--<label for="responsibilities">Responsibilites</label>-->
+                    <!--<input id="responsibilities" type="text" ng-model="r.text"/>-->
+                <!--</p>-->
+
+                <p>
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="10" ng-model="experience.description"></textarea>
+                </p>
+
+                <p>
+                <div class="row">
+                    <button class="button button-stable">Reset</button>
+                    <div class="col"></div>
+                    <button type="submit" class="button button-positive">Save</button>
+                </div>
+                </p>
+
+            </form>
+
+
+        </ion-content>
+    </ion-tab>
+
+
+
+
+</ion-tabs>
+</ion-pane>
+
+<!--
+
+<ion-tabs class="tabs-icon-top tabs-top work-border">
+
+    <ion-tab title="Add New" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
+        <ion-content>
+
+            <form class="kube" action="">
+                <label for="username">Username</label>
+                <input type="text" id="username"/>
+            </form>
+
+
+        </ion-content>
+    </ion-tab>
+
+    <ion-tab title="Edit Existing" icon-on="ion-ios7-clock" icon-off="ion-ios7-clock-outline">
+        &lt;!&ndash; Tab 2 content &ndash;&gt;
+    </ion-tab>
+</ion-tabs>
+-->

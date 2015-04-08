@@ -1,0 +1,131 @@
+<div class="row full-width nopad" id="dashboard-container">
+    <div class="columns small-7 large-7" id="resume-box">
+        <div class="row">
+            <div class="columns small-12 large-12">
+                    <h1 class="tooltitle text-left">
+                        <i class="fa fa-inbox"></i> Resume Box
+                    </h1>
+            </div>
+        </div>
+        <div class="row" id="resume-box-container">
+            <div class="columns small-12 large-12" id="columns">
+                <div id="columns1">
+                    <div id="empty-info" ng-show="resumes.length === 0">
+
+                        <h1>
+                            Your resume box is empty, lets create one. <br/>Check toolbox on your right to get started.
+                        </h1>
+                    </div>
+                    <figure ng-show="resumes.length > 0">
+                        <div class="sheet paper paper-lift" ng-repeat="r in resumes">
+                            <iframe src="{{r.url}}" frameborder="0" class="frame"></iframe>
+                            <div class="bar bar-footer bar-light">
+                                <a class="button button-small button-clear button-assertive fa fa-file-pdf-o fa-2x pdf-colored"
+                                   href="/getPdf?modelId={{r._id}}" target="_blank" title="Dowload PDF"></a> &nbsp;&nbsp;&nbsp;
+
+                                <a class="button button-large button-clear fa fa-link fa-2x button-dark"
+                                   href="/templates/professional?modelId={{r._id}}" target="_blank"
+                                   title="Get URL"></a>&nbsp;&nbsp;&nbsp;
+
+                                <a class="button button-small button-clear button-dark fa fa-trash fa-2x"
+                                   ng-click="deleteResume('{{r._id}}')" title="Delete"></a>&nbsp;&nbsp;&nbsp;
+
+
+                                <a class="button fa fa-twitter button-clear fa-3x twitter-colored"
+                                   href="https://twitter.com/intent/tweet?button_hashtag=eresume.io&text=My online resume at&url=http://www.eresume.io/templates/professional?modelId={{r._id}}"
+                                   target="_blank" data-url="https://dev.twitter.com" title="Tweet resume"></a>&nbsp;&nbsp;&nbsp;
+                                <script type="text/javascript">
+                                    window.twttr = (function (d, s, id) {
+                                        var t, js, fjs = d.getElementsByTagName(s)[0];
+                                        if (d.getElementById(id)) {
+                                            return
+                                        }
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = "https://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                        return window.twttr || (t = {
+                                                    _e: [], ready: function (f) {
+                                                        t._e.push(f)
+                                                    }
+                                                })
+                                    }(document, "script", "twitter-wjs"));
+                                </script>
+                                <a ng-show="r.isLinkedIn" class="button button-clear fa fa-linkedin-square linkedin-colored" title="Resume imported from LinkedIn"></a>&nbsp;&nbsp;&nbsp;
+                                <h1 class="title">&nbsp;</h1>
+                                <a class="button button-small button-dark button-clear" ui-sref="dashboard.main.one.deep.flow.resume({name:r.template, id: r._id})"></i> edit</a>
+                            </div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns small-3 large-3 nopad" id="toolbox">
+        <div class="row tools">
+            <div class="columns small-12 large-12">
+                    <h1 class="tooltitle text-left">
+                        <i class="fa fa-wrench"></i>
+                         Create resumes
+                    </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns small-12 large-12">
+                <div class="row">
+                    <div class="columns small-12 large-12">
+                        <a class="button button-full expand radius hvr-glow" ng-click="authenticate('linkedin')" id="btn-linkedin-import">
+                            <i class="fa fa-linkedin-square"></i> Import profile from LinkedIn
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns small-12 large-12">
+                        <p id="tool-other-title">
+                            or select template below & get started
+                            <br/><span class="info">( you can change templates anytime )</span>
+                            <!--<br/><span class="info">( current template count {{alTemplates.length}} )</span>-->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="templates-container" class="row tools">
+            <div class="columns large-12 small-12">
+                <div class="row">
+                    <div class="columns small-12 large-12">
+                        <div class="row template-wrapper" ng-repeat="temp in alTemplates" >
+                            <div class="columns small-12 large-12">
+                                <div class="row">
+                                    <div class="columns small-12 large-12 template-title" >
+                                        <!--<b class="labels">name: </b> -->
+                                        # {{$index+1}} : {{temp.name}} <span ng-show="temp.authorName.length > 0" style="font-size: 10px;"> inspired from <a href="{{temp.authorUrl}}" target="_blank">{{temp.authorName}}</a></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="columns small-8 large-8">
+                                        <div class="template" ng-click="zoomIn(temp)" style="cursor: zoom-in">
+                                            <img ng-src="{{temp.imageUrl}}"  alt=""/>
+                                        </div>
+                                    </div>
+                                    <div class="columns small-4 large-4">
+                                        <!--<a class="button success" href="">create </a>-->
+                                        <a class="button success" ui-sref="dashboard.main.one.deep.flow.resume({template:temp.value})">Create</a><br/><br/>
+                                        <!--<a class="button button-dark button-small" ><i class="fa fa-search-plus"></i> Zoom In</a>-->
+                                        <!--<a class="button success" ui-sref="dashboard.main.one.deep.flow.resume({template:temp.value})">Create</a>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns small-2 large-2">
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<!--<div style="height:200px">-->
+<!--<ion-content >-->
+
+<style type="text/css">
+    #login-form input, #recovery-field {
+        box-shadow: none;
+    }
+
+    #login-form input:focus, #recovery-field:focus {
+        background-color: #FFF;
+    }
+
+    #errorArea {
+        background-color: transparent !important;
+        border: none;
+    }
+</style>
+    <ion-modal-view style="width:400px;height:470px;margin: 1% auto;">
+    <ion-header-bar style="bar-dark">
+        <h1 class="title">Welcome</h1>
+        <button class="button button-clear" ng-click="closeLogin()">X</button>
+    </ion-header-bar>
+
+
+
+    <ion-tabs class="has-header tabs-striped tabs-top tabs-background-clear tabs-dark tabs-stable tabs-top tabs-icon-top slide-left-right-ios7" animation="slide-left-right" style="height:470px;width: 400px;">
+
+
+        <ion-tab title="Login" icon-on="fa fa-sign-in" icon-off="fa fa-sign-in">
+            <ion-content class="has-header panel nobg" style="background-color: #F9F9F9 !important;">
+                <form name="formLogin" ng-submit="doLogin()" novalidate id="login-form">
+                    <div class="list">
+
+                        <label class="item item-input" style="margin-bottom: 5px;" ng-class="{'cv-invalid-left': formLogin.username.$invalid && !formLogin.username.$pristine}">
+                            <input type="email" placeholder="Username" ng-model="user.username" type="email" ng-maxlength="50" required name="username" id="username">
+                        </label>
+
+                        <label class="item item-input" ng-class="{'cv-invalid-left': formLogin.password.$invalid && !formLogin.password.$pristine}">
+                            <input placeholder="Password" type="password" placeholder="Password" ng-model="user.password" name="password" ng-minlength="6" required>
+                        </label>
+
+                        <div class="item" id="errorArea">
+                            <div class="cv-invalid" ng-show="formLogin.password.$invalid && !formLogin.password.$pristine">
+                                password is required.
+                            </div>
+                            <div class="cv-invalid" ng-show="formLogin.username.$invalid && !formLogin.username.$pristine">
+                                valid email id is required.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="button col button-assertive" style="margin-bottom: 8px;">Sign in</button>
+
+                        <div class="panel radius">
+                            <b>Login with guest account:</b> (<a ng-click="fillGuest()">Click to fill form.</a>)<br/>
+                                <b>username: </b>bawasa.ejaz@gmail.com
+                                <br/><b>password:  </b>password
+                        </div>
+                    </div>
+                </form>
+            </ion-content>
+        </ion-tab>
+
+
+        <ion-tab title="Activate Account" icon-on="fa fa-check-square-o" icon-off="fa fa-check-square-o">
+            <ion-content class="has-header panel nobg" style="background-color: #F9F9F9 !important;">
+
+                <!--<div class="row">-->
+                    <label class="item item-input" style="margin-bottom: 5px;">
+                        <input type="email" placeholder="Username" type="email" ng-maxlength="50" required name="recover-email" ng-model="recover.emailId" id="recovery-field">
+                    </label>
+                <div class="row">
+                    <div class="col"><button class="button button-assertive" style="height: 45px !important;" value="activation" ng-click="doSendActivation()">Re-send activation link</button></div>
+                    <div class="col"><button class="button button-assertive" style="height: 45px !important" value="password" ng-click="doRecoverPassword()">Recover password</button></div>
+                </div>
+
+            </ion-content>
+        </ion-tab>
+    </ion-tabs>
+    </ion-modal-view>
+<!--</div>-->

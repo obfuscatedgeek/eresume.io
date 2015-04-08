@@ -1,0 +1,14 @@
+<div class="bar bar-dark">
+    <h1 class="title title-left">Select a template</h1>
+</div>
+
+<div class="list has-header">
+    <div ng-repeat="t in alTemplates" >
+        <!--<a class="item template-button" ui-sref="dashboard.main.one.deep.go-professional-tpl({name: t.value})" ng-click="updateTemplate(t)">-->
+        <a class="item template-button" ui-sref="dashboard.main.one.deep.flow.resume({name: t.value})" ng-click="updateTemplate(t)">
+
+            <h2>{{t.title}}</h2>
+            <p>{{t.description}}</p>
+        </a>
+    </div>
+</div>

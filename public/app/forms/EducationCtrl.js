@@ -1,0 +1,88 @@
+// vim: sw=4:ts=4:nu:nospell:fdc=4
+/*global Ext:true */
+/*global angular:true */
+/*global $:true */
+/*jslint browser: true, devel:true, sloppy: true, white: true, plusplus: true */
+
+/*
+ This file is part of ___ Package
+
+ Copyright (c) 2014, Ejaz Bawasa
+
+ Package:  ___
+ Author:   Ejaz Bawasa
+ Contact:  http://extjs.eu/contact
+ Date:     22/10/14
+
+ Commercial License
+ Developer, or the specified number of developers, may use this file in any number
+ of projects during the license period in accordance with the license purchased.
+
+ Uses other than including the file in a project are prohibited.
+ See http://extjs.eu/licensing for details.
+ */
+(function() {
+
+    var iam = 'EducationCtrl'
+        ,deps = ['$scope', 'CommonSrvc', '$ionicTabsDelegate', 'EVENTS', 'CONFIG', 'MainModel']
+        ,f = function($scope, CommonSrvc, $ionicTabsDelegate, EVENTS, CONFIG, MainModel) {
+
+            $scope.alEducation = MainModel.getPart('education') || [];
+
+            $scope.education = {
+
+                school: ''
+                ,degree: ''
+                ,address: ''
+                ,startMonth: ''
+                ,startYear: ''
+                ,description: ''
+                ,endMonth: ''
+                ,endYear: ''
+                ,_id: ''
+                ,grade: ''
+                ,gradeOnPaper: false
+            };
+
+            $scope.data = CommonSrvc.getMonthYear();
+
+
+            // enable editing of this current education.
+            $scope.doEdit = function(objEducation) {
+                $scope.education = objEducation;
+                $ionicTabsDelegate.select(1);
+            };
+
+            $scope.doSave = function() {
+                $scope.$emit(EVENTS.FORMSAVED, CONFIG.EDUCATION, $scope.education);
+            };
+
+            // update the model when save happens successfully.
+            $scope.$on(EVENTS.EDUCATIONUPDATED, function(obj) {
+                $scope.alEducation = MainModel.getPart('education');
+
+                $scope.education = {
+                    school: ''
+                    ,degree: ''
+                    ,address: ''
+                    ,startMonth: ''
+                    ,startYear: ''
+                    ,description: ''
+                    ,endMonth: ''
+                    ,endYear: ''
+                    ,_id: ''
+                    ,grade: ''
+                    ,gradeOnPaper: false
+                };
+            });
+
+
+            $scope.doDelete = function(objEducation) {
+                $scope.$emit(EVENTS.FORMDELETED, CONFIG.EDUCATION, objEducation);
+            };
+
+        };
+
+
+    angular.module('cv').controller(iam, deps.concat(f));
+})();

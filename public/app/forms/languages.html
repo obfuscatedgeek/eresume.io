@@ -1,0 +1,70 @@
+<style type="text/css">
+
+
+</style>
+<div class="bar languages">
+    <a class="button button-clear button-dark" style="color:#FFF;">languages</a>
+    <h1 class="title">&nbsp;</h1>
+    <a class="button button-clear fa fa-angle-double-left button-dark" ng-click="closeMenu();"></a>
+</div>
+<ion-content class="panel languages nobg border-2px">
+
+    <div class="card" style="margin-top: 0;">
+        <div class="item item-divider">
+            Existing languages
+        </div>
+        <div class="item item-text-wrap">
+
+
+            <div class="item-skill" ng-repeat="s in languages" >
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+
+                            <td class="skill-name" >{{s.name}}</td>
+
+                            <td>
+                                <a class="button button-small button-outline button-dark icon fa fa-pencil" ng-click="editLanguage('{{s}}')"></a>
+                            </td>
+                            <td>
+                                <a class="button button-small button-outline button-assertive icon fa fa-trash" ng-click="doDelete(s)"></a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="item item-divider">
+            Add new language
+        </div>
+        <div class="item item-text-wrap">
+            <form class="pure-form" ng-submit="doSave()">
+
+                <input type="hidden" name="skillId" ng-model="language._id"/>
+                    <p>
+                        <label for="name">Language</label>
+                        <input type="text" id="name" ng-model="language.name"/>
+                    </p>
+                    <p>
+                        <label for="rating">Proficiency</label>
+                        <select name="" id="" ng-options="opt.display as opt.display for opt in alProficiency" id="rating" ng-model="language.rating"></select>
+                    </p>
+                <div class="row">
+                        <button class="button button-stable" style="margin-left: 10px" type="reset">Reset</button>
+                        <div class="col"></div>
+                        <button type="submit" class="button button-positive" style="margin-right: 10px">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+</ion-content>
