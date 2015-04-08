@@ -11,7 +11,7 @@
 
  Package:  ___
  Author:   Ejaz Bawasa
- Contact:  http://extjs.eu/contact
+ Contact: bawasa.ejaz@gmail.com
  Date:     02/01/15
 
  Commercial License
