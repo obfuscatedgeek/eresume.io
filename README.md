@@ -14,7 +14,7 @@ Eresume
     - NPM
     - Bower
     - Gulp
-    - wkhtmltopdf from [wkhtmltopdf](http://wkhtmltopdf.org/)
+    - wkhtmltopdf from http://wkhtmltopdf.org/
 
   **Installation Steps**
 
