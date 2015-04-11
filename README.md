@@ -5,8 +5,13 @@ Eresume
   
     MEAN stack based app used for creating elegant resumes in minutes. 
     Working live at http://www.eresume.io
-  
-  
+
+ **Features Include**
+ 
+    - Import from LinkedIn
+    - Live preview
+    - Export to PDF
+
   **Requirements**
   
     - MongoDB
